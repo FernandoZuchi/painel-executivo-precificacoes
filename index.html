@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Executivo — Réveillon Casa Mirante 2026</title>
+    <link rel="icon" type="image/jpeg" href="src/cervejaria_escola_mirante_logo.jpeg">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+
+    <!-- TOP HEADER -->
+    <header class="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <img src="src/cervejaria_escola_mirante_logo.jpeg" alt="Logo Cervejaria Escola Mirante" class="w-10 h-10 object-cover rounded-xl border border-amber-500/40 shadow-md shadow-amber-500/10">
+                <div>
+                    <h1 class="text-xl font-extrabold tracking-tight text-white">CASA MIRANTE</h1>
+                    <p class="text-xs font-semibold text-amber-400 tracking-wider uppercase">Painel de Precificação & Gestão — Réveillon 2026</p>
+                </div>
+            </div>
+            
+            <!-- NAVEGAÇÃO ENTRE ABAS -->
+            <nav class="flex bg-slate-950 p-1.5 rounded-xl border border-slate-800/80 text-xs sm:text-sm font-semibold overflow-x-auto max-w-full custom-scrollbar">
+                <button onclick="switchTab('guia')" id="btn-guia" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 bg-amber-500 text-slate-950 shadow-md">Guia & Cálculos</button>
+                <button onclick="switchTab('simulador')" id="btn-simulador" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 text-slate-400 hover:text-white">Simulador & DRE</button>
+                <button onclick="switchTab('fb')" id="btn-fb" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 text-slate-400 hover:text-white">Ficha Técnica F&B</button>
+                <button onclick="switchTab('fixos')" id="btn-fixos" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 text-slate-400 hover:text-white">Custos Fixos</button>
+                <button onclick="switchTab('vendas')" id="btn-vendas" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 text-slate-400 hover:text-white">Controle de Vendas</button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 my-8 flex-1 w-full">
+
+        <!-- ABA 1: GUIA & CÁLCULOS -->
+        <section id="tab-guia" class="tab-content space-y-8">
+            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-900/80 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+                <div class="max-w-3xl">
+                    <span class="inline-block px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-full text-xs font-bold tracking-wider uppercase mb-3">Guia Completo de Engenharia Financeira</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">Como funciona a inteligência financeira do evento</h2>
+                    <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                        Este painel conecta em tempo real os custos unitários de compras, os custos fixos estruturais e o volume de vendas por lote para projetar o **resultado financeiro exato** do Réveillon 2026 da Casa Mirante.
+                    </p>
+                </div>
+            </div>
+
+            <!-- TUTORIAL PASSO A PASSO -->
+            <div class="bg-slate-900 border border-amber-500/30 p-6 sm:p-8 rounded-2xl shadow-xl">
+                <h3 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                    Passo a Passo: Como utilizar o sistema
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-slate-300">
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <span class="font-bold text-amber-400 block text-sm mb-1">1º Passo — Ficha Técnica F&B</span>
+                        Acesse a aba <b>Ficha Técnica F&B</b> e confira ou ajuste os preços pagos por cada um dos insumos (queijos, frios, chope, espumante, etc.). O custo unitário por adulto será atualizado na hora.
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <span class="font-bold text-amber-400 block text-sm mb-1">2º Passo — Custos Fixos</span>
+                        Na aba <b>Custos Fixos</b>, verifique a quantidade e o valor unitário das atrações e equipe (banda, freelas, ECAD, etc.). Ajuste conforme suas contratações reais.
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <span class="font-bold text-amber-400 block text-sm mb-1">3º Passo — Simulador & DRE</span>
+                        Na aba <b>Simulador & DRE</b> (que inicia zerada), preencha a quantidade esperada de vendas em cada lote de ingresso para calcular o Faturamento Bruto, DRE e o Ponto de Equilíbrio.
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
+                        <span class="font-bold text-amber-400 block text-sm mb-1">4º Passo — Controle de Vendas</span>
+                        Na aba <b>Controle de Vendas</b>, registre cada cliente que efetuar a compra do ingresso (nome, telefone, mesa e lote escolhido) para manter um controle diário de caixa.
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg mb-4">1</div>
+                    <h3 class="text-base font-bold text-white mb-2">Ficha Técnica F&B Detalhada</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3">
+                        Todos os **40+ insumos reais** (queijos, frios, proteínas, chopes, espumante Garibaldi, sucos e descartáveis) possuem seus preços unitários e gramaturas ajustáveis individualmente na aba F&B.
+                    </p>
+                    <div class="text-xs font-semibold text-amber-400">Qualquer alteração recalcula o custo/pessoa na hora.</div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">2</div>
+                    <h3 class="text-base font-bold text-white mb-2">Rateio dos Custos Fixos</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3">
+                        A estrutura do evento soma <b class="text-amber-400" id="guia-fixo-total-card">R$ 8.880,00</b>. Dividimos esse valor pela quantidade de <b class="text-white" id="guia-adultos-base-card">0 adultos pagantes</b> simulados, resultando no rateio exato por ingresso.
+                    </p>
+                    <div class="text-xs font-semibold text-emerald-400" id="guia-formula-rateio-card">Custo Fixo Rateado = R$ 8.880,00 ÷ Total Adultos</div>
+                </div>
+
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg">
+                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg mb-4">3</div>
+                    <h3 class="text-base font-bold text-white mb-2">Impostos & Cartão (Lucro Presumido/Real)</h3>
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3">
+                        Sobre o valor total de cada ingresso vendido, aplicamos a dedução direta de **8,65%** (sendo 5,65% de tributos sobre notas de vendas/serviços e 3,00% da taxa média bancária de Cartão/Pix).
+                    </p>
+                    <div class="text-xs font-semibold text-blue-400">Receita Líquida = Venda Bruta - 8,65%</div>
+                </div>
+            </div>
+
+            <!-- BREAKEVEN DINÂMICO -->
+            <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-lg">
+                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                    <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
+                    Entendendo o Ponto de Equilíbrio (Breakeven)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-300">
+                    <div class="space-y-3">
+                        <p class="leading-relaxed">
+                            O **Ponto de Equilíbrio** indica quantos ingressos de adulto precisam ser vendidos para pagar 100% dos custos fixos da casa (<span id="guia-fixo-breakeven-text" class="font-bold text-amber-400">R$ 8.880,00</span>) e os insumos consumidos.
+                        </p>
+                        <p class="leading-relaxed font-semibold text-amber-400">
+                            Fórmula: Breakeven = Custo Fixo Total ÷ Margem de Contribuição Média por Ingresso
+                        </p>
+                    </div>
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80 space-y-2">
+                        <div class="text-xs font-bold text-slate-400 uppercase">RESULTADO EM TEMPO REAL:</div>
+                        <div class="text-2xl font-extrabold text-white"><span id="guia-breakeven-num" class="text-emerald-400">31</span> Adultos Pagantes</div>
+                        <p class="text-xs text-slate-400">
+                            A partir do <b class="text-amber-400" id="guia-ingresso-lucro-num">32º</b> ingresso vendido, 100% da margem limpa entra diretamente como lucro líquido no bolso da Casa Mirante!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 2: SIMULADOR & DRE (ZERADA) -->
+        <section id="tab-simulador" class="tab-content hidden space-y-8">
+            <!-- CARDS METRICAS -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Faturamento Bruto</span>
+                    <div id="card-faturamento" class="text-2xl font-black text-white mt-1">R$ 0,00</div>
+                    <span class="text-xs text-slate-500 mt-1 block">Projeção total de vendas</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Deduções (8,65%)</span>
+                    <div id="card-impostos" class="text-2xl font-black text-rose-400 mt-1">R$ 0,00</div>
+                    <span class="text-xs text-slate-500 mt-1 block">Impostos + Taxas Cartão/Pix</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Custo F&B Total</span>
+                    <div id="card-custo-fb" class="text-2xl font-black text-amber-400 mt-1">R$ 0,00</div>
+                    <span id="card-fb-unit-sub" class="text-xs text-slate-500 mt-1 block">R$ 0,00 / adulto</span>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                    <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Lucro Líquido Final</span>
+                    <div id="card-lucro" class="text-2xl font-black text-emerald-400 mt-1">R$ 0,00</div>
+                    <span id="card-margem-pct" class="text-xs text-emerald-500 font-semibold mt-1 block">Margem 0,0%</span>
+                </div>
+            </div>
+
+            <!-- TABELA LOTES + DRE -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Simulador Lotes -->
+                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                    <div class="flex justify-between items-center mb-6">
+                        <div>
+                            <h2 class="text-lg font-bold text-white">Simulador de Vendas por Lote</h2>
+                            <p class="text-xs text-slate-400">Insira as quantidades de ingressos para simular a DRE</p>
+                        </div>
+                        <span id="total-ingressos-badge" class="px-3 py-1 bg-amber-500/10 border border-amber-500/30 text-amber-400 rounded-full text-xs font-bold">0 Ingressos Total</span>
+                    </div>
+
+                    <div class="overflow-x-auto custom-scrollbar">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                                    <th class="pb-3">Categoria / Lote</th>
+                                    <th class="pb-3 text-center">Preço (R$)</th>
+                                    <th class="pb-3 text-center">Qtd Projetada</th>
+                                    <th class="pb-3 text-right">Bruto (R$)</th>
+                                    <th class="pb-3 text-right">Líquido (R$)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tabela-lotes-body" class="divide-y divide-slate-800/60">
+                                <!-- Injetado via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- DRE Executivo -->
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-lg font-bold text-white mb-4">DRE Resumido do Evento</h2>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">Receita Bruta Total:</span>
+                                <span id="dre-rec-bruta" class="font-bold text-white">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">(-) Impostos & Cartão (8,65%):</span>
+                                <span id="dre-impostos" class="font-semibold text-rose-400">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-300 font-medium">(=) Receita Líquida Operacional:</span>
+                                <span id="dre-rec-liq" class="font-bold text-emerald-400">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">(-) Custo Total Insumos F&B:</span>
+                                <span id="dre-custo-fb" class="font-semibold text-rose-400">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-300 font-medium">(=) Margem de Contribuição Direta:</span>
+                                <span id="dre-margem-contrib" class="font-bold text-emerald-400">R$ 0,00</span>
+                            </div>
+                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                                <span class="text-slate-400">(-) Custos Fixos Totais:</span>
+                                <span id="dre-custos-fixos" class="font-semibold text-rose-400">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-950 p-4 rounded-xl space-y-2 border border-slate-800/80">
+                        <div class="flex justify-between items-center">
+                            <span class="text-xs font-bold text-slate-400 uppercase">LUCRO LÍQUIDO FINAL</span>
+                            <span id="dre-lucro-final" class="text-xl font-extrabold text-emerald-400">R$ 0,00</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-slate-400 pt-1 border-t border-slate-800/60">
+                            <span>Ponto de Equilíbrio (Breakeven):</span>
+                            <span id="dre-breakeven" class="font-bold text-amber-400">31 adultos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GRÁFICOS VISUAIS DA OPERAÇÃO -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                    <h3 class="text-base font-bold text-white mb-4">Composição Financeira (Receita vs Custos)</h3>
+                    <div class="h-64">
+                        <canvas id="chartReceitaCustos"></canvas>
+                    </div>
+                </div>
+                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                    <h3 class="text-base font-bold text-white mb-4">Sobras/Lucro Líquido por Lote Adulto (Unitário)</h3>
+                    <div class="h-64">
+                        <canvas id="chartLucroLotes"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 3: FICHA TÉCNICA F&B -->
+        <section id="tab-fb" class="tab-content hidden space-y-8">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="text-lg font-bold text-white">Ficha Técnica Destrinchada F&B (Preços Reais)</h2>
+                        <p class="text-xs text-slate-400">Altere o preço pago por Kg/Litro/Unidade para recalcular instantaneamente o custo por pessoa</p>
+                    </div>
+                    <div class="bg-amber-500/10 border border-amber-500/30 px-4 py-2 rounded-xl text-right">
+                        <span class="text-xs font-semibold text-amber-400 block uppercase">Custo F&B / Adulto</span>
+                        <span id="total-fb-badge" class="text-xl font-extrabold text-amber-400">R$ 0,00</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                                <th class="pb-3">Categoria</th>
+                                <th class="pb-3">Insumo / Ingrediente</th>
+                                <th class="pb-3 text-center">Consumo / Pessoa</th>
+                                <th class="pb-3 text-center">Unidade</th>
+                                <th class="pb-3 text-right">Preço Unitário Pago (R$)</th>
+                                <th class="pb-3 text-right">Custo / Pessoa (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-fb-body" class="divide-y divide-slate-800/60">
+                            <!-- Injetado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 4: CUSTOS FIXOS -->
+        <section id="tab-fixos" class="tab-content hidden space-y-8">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+                    <div>
+                        <h2 class="text-lg font-bold text-white">Estrutura de Custos Fixos (Casa Mirante)</h2>
+                        <p class="text-xs text-slate-400">Altere tanto a quantidade/equipe quanto o valor unitário para ver o reflexo instantâneo no evento</p>
+                    </div>
+                    <div class="bg-amber-500/10 border border-amber-500/30 px-4 py-2 rounded-xl text-right">
+                        <span class="text-xs font-semibold text-amber-400 block uppercase">Custo Fixo Total</span>
+                        <span id="total-fixos-badge" class="text-xl font-extrabold text-amber-400">R$ 8.880,00</span>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                                <th class="pb-3">Item / Fornecedor</th>
+                                <th class="pb-3">Descrição / Detalhes</th>
+                                <th class="pb-3 text-center">Qtd / Profissionais</th>
+                                <th class="pb-3 text-right">Valor Unitário (R$)</th>
+                                <th class="pb-3 text-right">Total (R$)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-fixos-body" class="divide-y divide-slate-800/60">
+                            <!-- Injetado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABA 5: CONTROLE DE VENDAS (ZERADA) -->
+        <section id="tab-vendas" class="tab-content hidden space-y-8">
+            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <h2 class="text-lg font-bold text-white mb-4">Registrar Nova Venda de Ingresso</h2>
+                
+                <form id="form-venda" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-8 bg-slate-950 p-5 rounded-xl border border-slate-800">
+                    <div class="lg:col-span-2">
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Nome do Cliente</label>
+                        <input type="text" id="v-nome" required placeholder="Ex: Nome do Cliente" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">WhatsApp</label>
+                        <input type="text" id="v-tel" placeholder="(32) 99999-9999" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Mesa</label>
+                        <input type="text" id="v-mesa" placeholder="Mesa 01" required class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-400 mb-1">Categoria / Lote</label>
+                        <select id="v-lote-select" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                            <option value="Adulto - Lote Relâmpago|420">Adulto - Relâmpago (R$ 420)</option>
+                            <option value="Adulto - 2º Lote|450">Adulto - 2º Lote (R$ 450)</option>
+                            <option value="Adulto - 3º Lote|480">Adulto - 3º Lote (R$ 480)</option>
+                            <option value="Adulto - Último Lote|550">Adulto - Último Lote (R$ 550)</option>
+                            <option value="Jovem (10 a 17 anos)|336">Jovem 10-17 anos (R$ 336)</option>
+                            <option value="Criança (6 a 10 anos)|252">Criança 6-10 anos (R$ 252)</option>
+                            <option value="Criança (3 a 6 anos)|50">Criança 3-6 anos (R$ 50)</option>
+                            <option value="Criança (até 3 anos)|0">Criança até 3 anos (Grátis)</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold px-4 py-2.5 rounded-lg text-sm transition shadow-lg shadow-amber-500/10">Adicionar Venda</button>
+                    </div>
+                </form>
+
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-base font-bold text-white">Vendas Confirmadas</h3>
+                    <div id="vendas-total-arrecadado" class="text-sm font-bold text-emerald-400">Total Arrecadado: R$ 0,00</div>
+                </div>
+
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="w-full text-left text-sm">
+                        <thead>
+                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                                <th class="pb-3">Cliente</th>
+                                <th class="pb-3">Telefone</th>
+                                <th class="pb-3 text-center">Mesa</th>
+                                <th class="pb-3 text-center">Categoria / Lote</th>
+                                <th class="pb-3 text-right">Valor Ingresso (R$)</th>
+                                <th class="pb-3 text-center">Ações</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tabela-vendas-body" class="divide-y divide-slate-800/60">
+                            <!-- Injetado via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- JS -->
+    <script>
+        let dadosInsumos = [
+            { cat: "Mesa de Frios", nome: "Parmesão", qtd: 0.020, und: "Kg", preco: 41.90 },
+            { cat: "Mesa de Frios", nome: "Mussarela", qtd: 0.020, und: "Kg", preco: 34.90 },
+            { cat: "Mesa de Frios", nome: "Provolone", qtd: 0.020, und: "Kg", preco: 54.00 },
+            { cat: "Mesa de Frios", nome: "Gorgonzola", qtd: 0.020, und: "Kg", preco: 65.00 },
+            { cat: "Mesa de Frios", nome: "Presunto", qtd: 0.020, und: "Kg", preco: 28.98 },
+            { cat: "Mesa de Frios", nome: "Peito de Peru", qtd: 0.020, und: "Kg", preco: 75.00 },
+            { cat: "Mesa de Frios", nome: "Salaminho", qtd: 0.020, und: "Kg", preco: 89.00 },
+            { cat: "Mesa de Frios", nome: "Tender com Melado", qtd: 0.020, und: "Kg", preco: 80.00 },
+            { cat: "Mesa de Frios", nome: "Geleias Variadas", qtd: 0.015, und: "Kg", preco: 30.00 },
+            { cat: "Mesa de Frios", nome: "Pastinha Ricota", qtd: 0.015, und: "Kg", preco: 18.90 },
+            { cat: "Mesa de Frios", nome: "Pastinha Frango", qtd: 0.015, und: "Kg", preco: 15.99 },
+            { cat: "Mesa de Frios", nome: "Caponata de Berinjela", qtd: 0.025, und: "Kg", preco: 45.00 },
+            { cat: "Mesa de Frios", nome: "Azeitonas Verdes Marinadas", qtd: 0.020, und: "Kg", preco: 46.00 },
+            { cat: "Mesa de Frios", nome: "Torradinhas de Ciabatta", qtd: 0.15, und: "Unidade", preco: 9.00 },
+            { cat: "Mesa de Frios", nome: "Uvas (Verdes e Roxas)", qtd: 0.050, und: "Kg", preco: 24.00 },
+            { cat: "Mesa de Frios", nome: "Abacaxi Assado com Ameixa", qtd: 0.08, und: "Unidade", preco: 6.79 },
+            { cat: "Entradas & Salgados", nome: "Trem Mineiro", qtd: 0.152, und: "Pct (525g)", preco: 11.10 },
+            { cat: "Entradas & Salgados", nome: "Bolinho Cervejeiro c/ Mostarda", qtd: 0.1875, und: "Pct (8un 30g)", preco: 8.48 },
+            { cat: "Entradas & Salgados", nome: "Croquete de Costela", qtd: 0.375, und: "Pct (4un 45g)", preco: 11.27 },
+            { cat: "Entradas & Salgados", nome: "Isca de Frango c/ Barbecue", qtd: 0.080, und: "Kg", preco: 15.99 },
+            { cat: "Entradas & Salgados", nome: "Pastel Mineirinho", qtd: 1.5, und: "Unidade", preco: 1.49 },
+            { cat: "Estação de Massas", nome: "Spaghetti e Penne", qtd: 0.080, und: "Kg", preco: 19.90 },
+            { cat: "Estação de Massas", nome: "Insumos Molho Bolonhesa", qtd: 0.050, und: "Kg", preco: 20.00 },
+            { cat: "Estação de Massas", nome: "Insumos Molho Branco (Manteiga/Creme)", qtd: 0.050, und: "Kg", preco: 25.00 },
+            { cat: "Ceia Completa", nome: "Filé de Tilápia", qtd: 0.100, und: "Kg", preco: 42.90 },
+            { cat: "Ceia Completa", nome: "Alcaparras p/ Molho", qtd: 0.10, und: "Vidro (100g)", preco: 14.00 },
+            { cat: "Ceia Completa", nome: "Porchetta (Pernil)", qtd: 0.100, und: "Kg", preco: 19.90 },
+            { cat: "Ceia Completa", nome: "Salsa Verde (Maço)", qtd: 0.10, und: "Unidade", preco: 2.97 },
+            { cat: "Ceia Completa", nome: "Kafta na Brasa", qtd: 0.080, und: "Kg", preco: 22.00 },
+            { cat: "Ceia Completa", nome: "Molho Tzatziki (Iogurte/Pepino/Hortelã)", qtd: 0.040, und: "Kg", preco: 25.00 },
+            { cat: "Ceia Completa", nome: "Arroz Branco", qtd: 0.040, und: "Kg", preco: 4.85 },
+            { cat: "Ceia Completa", nome: "Lentilhas p/ Arroz Mjadra", qtd: 0.020, und: "Kg", preco: 20.00 },
+            { cat: "Ceia Completa", nome: "Mousseline Batatas (Batata/Manteiga/Creme)", qtd: 0.080, und: "Kg", preco: 15.00 },
+            { cat: "Ceia Completa", nome: "Brócolis Salteado c/ Alho", qtd: 0.33, und: "Maço", preco: 6.79 },
+            { cat: "Ceia Completa", nome: "Farofa & Salada Mix de Folhas", qtd: 0.100, und: "Kg", preco: 8.00 },
+            { cat: "Menu Kids", nome: "Mini X-Burguer", qtd: 1.0, und: "Unidade", preco: 4.50 },
+            { cat: "Menu Kids", nome: "Batata Frita c/ Mussarela/Ketchup", qtd: 0.33, und: "Pct (300g)", preco: 10.24 },
+            { cat: "Sobremesas", nome: "Churros Recheado", qtd: 1.0, und: "Unidade", preco: 2.50 },
+            { cat: "Sobremesas", nome: "Brigadeiro de Colher", qtd: 1.0, und: "Porção", preco: 2.00 },
+            { cat: "Sobremesas", nome: "Pudim de Leite", qtd: 0.5, und: "Fatia", preco: 4.89 },
+            { cat: "Sobremesas", nome: "Sorvete Cervejeiro", qtd: 0.75, und: "Pote (160g)", preco: 3.50 },
+            { cat: "Bebidas Open Bar", nome: "Chope Pilsen", qtd: 1.40, und: "Litro", preco: 9.32 },
+            { cat: "Bebidas Open Bar", nome: "Chope Red", qtd: 0.35, und: "Litro", preco: 10.90 },
+            { cat: "Bebidas Open Bar", nome: "Chope IPA", qtd: 0.30, und: "Litro", preco: 12.75 },
+            { cat: "Bebidas Open Bar", nome: "Chope Vienna", qtd: 0.30, und: "Litro", preco: 10.11 },
+            { cat: "Bebidas Open Bar", nome: "Chope de Vinho", qtd: 0.30, und: "Litro", preco: 10.00 },
+            { cat: "Bebidas Open Bar", nome: "Espumante Garibaldi (Brinde)", qtd: 0.50, und: "Garrafa", preco: 28.00 },
+            { cat: "Bebidas Open Bar", nome: "Drinks - Cachaça Branca", qtd: 0.050, und: "Litro", preco: 11.90 },
+            { cat: "Bebidas Open Bar", nome: "Drinks - Vodka", qtd: 0.080, und: "Litro", preco: 40.00 },
+            { cat: "Bebidas Open Bar", nome: "Drinks - Limão (Saco 15kg)", qtd: 0.010, und: "Saco (15kg)", preco: 14.00 },
+            { cat: "Bebidas Open Bar", nome: "Drinks - Morango", qtd: 0.050, und: "Kg", preco: 14.17 },
+            { cat: "Bebidas Open Bar", nome: "Drinks - Açúcar (Pct 5kg)", qtd: 0.006, und: "Pct (5kg)", preco: 36.90 },
+            { cat: "Bebidas Open Bar", nome: "Sucos Tial (Uva/Pêssego/Manga)", qtd: 0.40, und: "Litro", preco: 11.90 },
+            { cat: "Bebidas Open Bar", nome: "Coca-Cola (Garrafa 2L)", qtd: 0.20, und: "Garrafa (2L)", preco: 12.00 },
+            { cat: "Bebidas Open Bar", nome: "Guaraná (Garrafa 3L)", qtd: 0.10, und: "Garrafa (3L)", preco: 11.00 },
+            { cat: "Bebidas Open Bar", nome: "Água Mineral / c/ Gás (500ml)", qtd: 1.5, und: "Garrafa", preco: 2.15 }
+        ];
+
+        let dadosFixos = [
+            { item: "Atração Musical", desc: "Banda BASF + DJ completo com som/luz", qtd: 1, preco: 4300.00 },
+            { item: "Infraestrutura", desc: "Locação de Tenda Coberta externa", qtd: 1, preco: 0.00 },
+            { item: "Equipe Freela Evento", desc: "Profissionais (Salão, Cozinha e Garden)", qtd: 16, preco: 130.00 },
+            { item: "Espaço Kids", desc: "Recreadoras Clube da Tia Lú", qtd: 2, preco: 300.00 },
+            { item: "Direitos Autorais", desc: "ECAD - Licença Músicas", qtd: 1, preco: 900.00 },
+            { item: "Decoração & Cenografia", desc: "Ambientação Casa Mirante", qtd: 1, preco: 1000.00 }
+        ];
+
+        // === SIMULADOR ZERADO PARA PREENCHIMENTO PELO USUÁRIO ===
+        let dadosLotes = [
+            { categoria: "Adulto", lote: "Lote Relâmpago", preco: 420.00, qtd: 0 },
+            { categoria: "Adulto", lote: "2º Lote", preco: 450.00, qtd: 0 },
+            { categoria: "Adulto", lote: "3º Lote", preco: 480.00, qtd: 0 },
+            { categoria: "Adulto", lote: "Último Lote", preco: 550.00, qtd: 0 },
+            { categoria: "Jovens (10 a 17 anos)", lote: "Relâmpago / 1º Lote", preco: 336.00, qtd: 0 },
+            { categoria: "Crianças (6 a 10 anos)", lote: "Relâmpago / 1º Lote", preco: 252.00, qtd: 0 },
+            { categoria: "Crianças (3 a 6 anos)", lote: "Preço Único", preco: 50.00, qtd: 0 },
+            { categoria: "Crianças (até 3 anos)", lote: "Gratuito", preco: 0.00, qtd: 0 }
+        ];
+
+        // === CONTROLE DE VENDAS ZERADO ===
+        let listaVendas = [];
+
+        let chartRecCustosObj = null;
+        let chartLucroLotesObj = null;
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-amber-500', 'text-slate-950', 'shadow-md');
+                el.classList.add('text-slate-400');
+            });
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`btn-${tabId}`);
+            activeBtn.classList.remove('text-slate-400');
+            activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'shadow-md');
+            renderAll();
+        }
+
+        function calcularCustoFBUnitario() {
+            let total = 0;
+            dadosInsumos.forEach(item => { total += (item.qtd * item.preco); });
+            return total;
+        }
+
+        function calcularCustosFixosTotais() {
+            let total = 0;
+            dadosFixos.forEach(item => { total += (item.qtd * item.preco); });
+            return total;
+        }
+
+        function renderFB() {
+            const tbody = document.getElementById('tabela-fb-body');
+            tbody.innerHTML = '';
+            let custoTotalPorPessoa = 0;
+
+            dadosInsumos.forEach((item, index) => {
+                let subtotal = item.qtd * item.preco;
+                custoTotalPorPessoa += subtotal;
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-800/40 transition">
+                        <td class="py-2.5 px-3 text-xs font-semibold text-amber-400/90 uppercase">${item.cat}</td>
+                        <td class="py-2.5 px-3 font-medium text-white">${item.nome}</td>
+                        <td class="py-2.5 px-3 text-center text-slate-300">${item.qtd}</td>
+                        <td class="py-2.5 px-3 text-center text-slate-400">${item.und}</td>
+                        <td class="py-2.5 px-3 text-right">
+                            <input type="number" step="0.01" value="${item.preco.toFixed(2)}" onchange="atualizarPrecoFB(${index}, this.value)" class="w-24 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-right text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+                        </td>
+                        <td class="py-2.5 px-3 text-right font-bold text-emerald-400">R$ ${subtotal.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('total-fb-badge').innerText = `R$ ${custoTotalPorPessoa.toFixed(2)}`;
+            document.getElementById('card-fb-unit-sub').innerText = `R$ ${custoTotalPorPessoa.toFixed(2)} / adulto`;
+        }
+
+        function atualizarPrecoFB(index, val) {
+            dadosInsumos[index].preco = parseFloat(val) || 0;
+            renderAll();
+        }
+
+        function renderFixos() {
+            const tbody = document.getElementById('tabela-fixos-body');
+            tbody.innerHTML = '';
+            let totalFixos = 0;
+
+            dadosFixos.forEach((item, index) => {
+                let subtotal = item.qtd * item.preco;
+                totalFixos += subtotal;
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-800/40 transition">
+                        <td class="py-3 px-3 font-bold text-white">${item.item}</td>
+                        <td class="py-3 px-3 text-slate-400 text-xs">${item.desc}</td>
+                        <td class="py-3 px-3 text-center">
+                            <input type="number" value="${item.qtd}" min="0" onchange="atualizarQtdFixo(${index}, this.value)" class="w-16 bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-center font-bold text-white focus:outline-none focus:border-amber-500">
+                        </td>
+                        <td class="py-3 px-3 text-right">
+                            <input type="number" step="0.01" value="${item.preco.toFixed(2)}" onchange="atualizarPrecoFixo(${index}, this.value)" class="w-28 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-right text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+                        </td>
+                        <td class="py-3 px-3 text-right font-bold text-emerald-400">R$ ${subtotal.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('total-fixos-badge').innerText = `R$ ${totalFixos.toFixed(2)}`;
+        }
+
+        function atualizarPrecoFixo(index, val) {
+            dadosFixos[index].preco = parseFloat(val) || 0;
+            renderAll();
+        }
+
+        function atualizarQtdFixo(index, val) {
+            dadosFixos[index].qtd = parseInt(val) || 0;
+            renderAll();
+        }
+
+        function renderSimulador() {
+            const tbody = document.getElementById('tabela-lotes-body');
+            tbody.innerHTML = '';
+            let recBrutaTotal = 0;
+            let totalAdultos = 0;
+            let totalIngressosGeral = 0;
+
+            dadosLotes.forEach((item, index) => {
+                let subBruta = item.preco * item.qtd;
+                recBrutaTotal += subBruta;
+                totalIngressosGeral += item.qtd;
+                if (item.categoria === "Adulto") totalAdultos += item.qtd;
+
+                let impostoItem = subBruta * 0.0865;
+                let subLiq = subBruta - impostoItem;
+
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-800/40 transition">
+                        <td class="py-3">
+                            <span class="font-bold text-white block">${item.lote}</span>
+                            <span class="text-xs text-slate-400">${item.categoria}</span>
+                        </td>
+                        <td class="py-3 text-center font-bold text-amber-400">R$ ${item.preco.toFixed(2)}</td>
+                        <td class="py-3 text-center">
+                            <input type="number" value="${item.qtd}" min="0" onchange="atualizarQtdLote(${index}, this.value)" class="w-16 bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-center font-bold text-white focus:outline-none focus:border-amber-500">
+                        </td>
+                        <td class="py-3 text-right font-semibold text-slate-300">R$ ${subBruta.toFixed(2)}</td>
+                        <td class="py-3 text-right font-bold text-emerald-400">R$ ${subLiq.toFixed(2)}</td>
+                    </tr>
+                `;
+            });
+
+            let deducoes = recBrutaTotal * 0.0865;
+            let recLiq = recBrutaTotal - deducoes;
+            let custoFBUnit = calcularCustoFBUnitario();
+            let custoFBTotal = totalAdultos * custoFBUnit;
+            let margemContrib = recLiq - custoFBTotal;
+            let custosFixosTotais = calcularCustosFixosTotais();
+            let lucroLiquidoFinal = margemContrib - custosFixosTotais;
+
+            let precoMedioAdulto = 450; 
+            let recLiqMedia = precoMedioAdulto * (1 - 0.0865);
+            let margemUnitMedia = recLiqMedia - custoFBUnit;
+            let breakevenAdultos = Math.ceil(custosFixosTotais / margemUnitMedia);
+
+            document.getElementById('card-faturamento').innerText = `R$ ${recBrutaTotal.toFixed(2)}`;
+            document.getElementById('card-impostos').innerText = `R$ ${deducoes.toFixed(2)}`;
+            document.getElementById('card-custo-fb').innerText = `R$ ${custoFBTotal.toFixed(2)}`;
+            
+            const cardLucro = document.getElementById('card-lucro');
+            cardLucro.innerText = `R$ ${lucroLiquidoFinal.toFixed(2)}`;
+            cardLucro.className = `text-2xl font-black mt-1 ${lucroLiquidoFinal >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+            
+            let margemPct = recBrutaTotal > 0 ? (lucroLiquidoFinal / recBrutaTotal) * 100 : 0;
+            document.getElementById('card-margem-pct').innerText = `Margem Líquida: ${margemPct.toFixed(1)}%`;
+
+            document.getElementById('total-ingressos-badge').innerText = `${totalIngressosGeral} Ingressos Total (${totalAdultos} Adultos)`;
+            document.getElementById('dre-rec-bruta').innerText = `R$ ${recBrutaTotal.toFixed(2)}`;
+            document.getElementById('dre-impostos').innerText = `R$ ${deducoes.toFixed(2)}`;
+            document.getElementById('dre-rec-liq').innerText = `R$ ${recLiq.toFixed(2)}`;
+            document.getElementById('dre-custo-fb').innerText = `R$ ${custoFBTotal.toFixed(2)}`;
+            document.getElementById('dre-margem-contrib').innerText = `R$ ${margemContrib.toFixed(2)}`;
+            document.getElementById('dre-custos-fixos').innerText = `R$ ${custosFixosTotais.toFixed(2)}`;
+            
+            const dreLucro = document.getElementById('dre-lucro-final');
+            dreLucro.innerText = `R$ ${lucroLiquidoFinal.toFixed(2)}`;
+            dreLucro.className = `text-xl font-extrabold ${lucroLiquidoFinal >= 0 ? 'text-emerald-400' : 'text-rose-400'}`;
+            
+            document.getElementById('dre-breakeven').innerText = `${breakevenAdultos} adultos pagantes`;
+
+            // ABA GUIA & CÁLCULOS
+            let rateioFixoPorAdulto = totalAdultos > 0 ? (custosFixosTotais / totalAdultos) : 0;
+            document.getElementById('guia-fixo-total-card').innerText = `R$ ${custosFixosTotais.toFixed(2)}`;
+            document.getElementById('guia-adultos-base-card').innerText = `${totalAdultos} adultos pagantes`;
+            document.getElementById('guia-fixo-rateio-card').innerText = `R$ ${rateioFixoPorAdulto.toFixed(2)}`;
+            document.getElementById('guia-formula-rateio-card').innerText = `Custo Fixo Rateado = R$ ${custosFixosTotais.toFixed(2)} ÷ ${totalAdultos || 'Total'} adultos`;
+            document.getElementById('guia-fixo-breakeven-text').innerText = `R$ ${custosFixosTotais.toFixed(2)}`;
+            document.getElementById('guia-breakeven-num').innerText = `${breakevenAdultos}`;
+            document.getElementById('guia-ingresso-lucro-num').innerText = `${breakevenAdultos + 1}º`;
+
+            renderCharts(recLiq, custoFBTotal, custosFixosTotais, lucroLiquidoFinal, custoFBUnit, rateioFixoPorAdulto);
+        }
+
+        function atualizarQtdLote(index, val) {
+            dadosLotes[index].qtd = parseInt(val) || 0;
+            renderAll();
+        }
+
+        function renderCharts(recLiq, custoFB, custosFixos, lucro, custoFBUnit, rateioFixoUnit) {
+            const ctx1 = document.getElementById('chartReceitaCustos').getContext('2d');
+            const ctx2 = document.getElementById('chartLucroLotes').getContext('2d');
+
+            if (chartRecCustosObj) chartRecCustosObj.destroy();
+            if (chartLucroLotesObj) chartLucroLotesObj.destroy();
+
+            chartRecCustosObj = new Chart(ctx1, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Custo F&B Total', 'Custos Fixos Totais', 'Lucro Líquido Final'],
+                    datasets: [{
+                        data: [custoFB, custosFixos, Math.max(0, lucro)],
+                        backgroundColor: ['#f59e0b', '#f43f5e', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { position: 'bottom', labels: { color: '#94a3b8', font: { family: 'Plus Jakarta Sans', size: 11 } } }
+                    }
+                }
+            });
+
+            let lotesAdultos = dadosLotes.filter(l => l.categoria === "Adulto");
+            let labelsLotes = lotesAdultos.map(l => l.lote);
+            let lucrosUnitLotes = lotesAdultos.map(l => {
+                let recLiqUnit = l.preco * (1 - 0.0865);
+                return recLiqUnit - custoFBUnit - rateioFixoUnit;
+            });
+
+            chartLucroLotesObj = new Chart(ctx2, {
+                type: 'bar',
+                data: {
+                    labels: labelsLotes,
+                    datasets: [{
+                        label: 'Lucro Líquido Unitário (R$)',
+                        data: lucrosUnitLotes,
+                        backgroundColor: '#10b981',
+                        borderRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { ticks: { color: '#94a3b8' }, grid: { display: false } },
+                        y: { ticks: { color: '#94a3b8' }, grid: { color: '#1e293b' } }
+                    }
+                }
+            });
+        }
+
+        function renderVendas() {
+            const tbody = document.getElementById('tabela-vendas-body');
+            tbody.innerHTML = '';
+            let totalArrecadado = 0;
+
+            if (listaVendas.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="6" class="py-6 text-center text-slate-500 text-xs">
+                            Nenhuma venda registrada ainda. Utilize o formulário acima para cadastrar clientes.
+                        </td>
+                    </tr>
+                `;
+                document.getElementById('vendas-total-arrecadado').innerText = `Total Arrecadado: R$ 0,00`;
+                return;
+            }
+
+            listaVendas.forEach((v) => {
+                totalArrecadado += v.valor;
+                tbody.innerHTML += `
+                    <tr class="hover:bg-slate-800/40 transition">
+                        <td class="py-3 px-3 font-bold text-white">${v.nome}</td>
+                        <td class="py-3 px-3 text-slate-400 text-xs">${v.tel}</td>
+                        <td class="py-3 px-3 text-center text-slate-300 font-medium">${v.mesa}</td>
+                        <td class="py-3 px-3 text-center text-amber-400 font-semibold text-xs">${v.loteText}</td>
+                        <td class="py-3 px-3 text-right font-bold text-emerald-400">R$ ${v.valor.toFixed(2)}</td>
+                        <td class="py-3 px-3 text-center">
+                            <button onclick="removerVenda(${v.id})" class="text-rose-400 hover:text-rose-300 text-xs font-bold px-2.5 py-1 bg-rose-500/10 border border-rose-500/30 rounded-lg transition">Excluir</button>
+                        </td>
+                    </tr>
+                `;
+            });
+
+            document.getElementById('vendas-total-arrecadado').innerText = `Total Arrecadado: R$ ${totalArrecadado.toFixed(2)}`;
+        }
+
+        document.getElementById('form-venda').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const nome = document.getElementById('v-nome').value;
+            const tel = document.getElementById('v-tel').value || "(32) S/N";
+            const mesa = document.getElementById('v-mesa').value;
+            const loteSelect = document.getElementById('v-lote-select').value;
+
+            const [loteText, valorStr] = loteSelect.split('|');
+            const valor = parseFloat(valorStr) || 0;
+
+            listaVendas.push({
+                id: Date.now(),
+                nome, tel, mesa, loteText, valor
+            });
+
+            document.getElementById('v-nome').value = '';
+            document.getElementById('v-tel').value = '';
+            document.getElementById('v-mesa').value = '';
+
+            renderVendas();
+        });
+
+        function removerVenda(id) {
+            listaVendas = listaVendas.filter(v => v.id !== id);
+            renderVendas();
+        }
+
+        function renderAll() {
+            renderFB();
+            renderFixos();
+            renderSimulador();
+            renderVendas();
+        }
+
+        renderAll();
+    </script>
+</body>
+</html>
