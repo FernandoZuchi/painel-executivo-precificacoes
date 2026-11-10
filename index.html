@@ -9,29 +9,32 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #090d16; color: #f1f5f9; }
         .custom-scrollbar::-webkit-scrollbar { width: 6px; height: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #090d16; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #334155; }
+        .glass-card { background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(10, 15, 28, 0.95) 100%); border: 1px solid rgba(217, 119, 6, 0.15); box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3), 0 8px 10px -6px rgba(0, 0, 0, 0.3); }
     </style>
 </head>
-<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
+<body class="min-h-screen flex flex-col antialiased selection:bg-amber-500 selection:text-slate-950">
 
     <!-- TOP HEADER -->
-    <header class="bg-slate-900/90 border-b border-slate-800 sticky top-0 z-50 backdrop-blur-md">
+    <header class="bg-[#0b1120]/90 border-b border-amber-500/15 sticky top-0 z-50 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-                <img src="src/cervejaria_escola_mirante_logo.jpeg" alt="Logo Cervejaria Escola Mirante" class="w-10 h-10 object-cover rounded-xl border border-amber-500/40 shadow-md shadow-amber-500/10">
+                <img src="src/cervejaria_escola_mirante_logo.jpeg" alt="Logo Cervejaria Escola Mirante" class="w-11 h-11 object-cover rounded-xl border border-amber-500/40 shadow-lg shadow-amber-500/10">
                 <div>
-                    <h1 class="text-xl font-extrabold tracking-tight text-white">CASA MIRANTE</h1>
-                    <p class="text-xs font-semibold text-amber-400 tracking-wider uppercase">Painel de Precificação & Gestão — Réveillon 2026</p>
+                    <h1 class="text-xl font-extrabold tracking-tight text-white flex items-center gap-2">
+                        CASA MIRANTE <span class="text-xs px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20 font-semibold">Gestão Executiva</span>
+                    </h1>
+                    <p class="text-xs font-medium text-amber-400/90 tracking-wide uppercase">Réveillon 2026 • Precificação & Inteligência Financeira</p>
                 </div>
             </div>
             
             <!-- NAVEGAÇÃO ENTRE ABAS -->
-            <nav class="flex bg-slate-950 p-1.5 rounded-xl border border-slate-800/80 text-xs sm:text-sm font-semibold overflow-x-auto max-w-full custom-scrollbar">
-                <button onclick="switchTab('guia')" id="btn-guia" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 bg-amber-500 text-slate-950 shadow-md">Guia & Cálculos</button>
+            <nav class="flex bg-[#070b14] p-1.5 rounded-xl border border-slate-800 text-xs sm:text-sm font-semibold overflow-x-auto max-w-full custom-scrollbar">
+                <button onclick="switchTab('guia')" id="btn-guia" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 bg-amber-500 text-slate-950 shadow-md font-bold">Guia & Cálculos</button>
                 <button onclick="switchTab('simulador')" id="btn-simulador" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 text-slate-400 hover:text-white">Simulador & DRE</button>
                 <button onclick="switchTab('fb')" id="btn-fb" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 text-slate-400 hover:text-white">Ficha Técnica F&B</button>
                 <button onclick="switchTab('fixos')" id="btn-fixos" class="tab-btn px-4 py-2.5 rounded-lg transition-all duration-200 text-slate-400 hover:text-white">Custos Fixos</button>
@@ -41,121 +44,141 @@
     </header>
 
     <!-- CONTEÚDO PRINCIPAL -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 my-8 flex-1 w-full">
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 my-8 flex-1 w-full space-y-8">
 
-        <!-- ABA 1: GUIA & CÁLCULOS -->
+        <!-- ABA 1: GUIA & CÁLCULOS (MODERNIZADA E LIMPA) -->
         <section id="tab-guia" class="tab-content space-y-8">
-            <div class="bg-gradient-to-r from-slate-900 via-slate-900 to-slate-900/80 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
-                <div class="max-w-3xl">
-                    <span class="inline-block px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-full text-xs font-bold tracking-wider uppercase mb-3">Guia Completo de Engenharia Financeira</span>
-                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-4">Como funciona a inteligência financeira do evento</h2>
+            <!-- HERO BANNER -->
+            <div class="glass-card p-6 sm:p-8 rounded-2xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-64 h-64 bg-amber-500/5 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="max-w-3xl relative z-10">
+                    <span class="inline-block px-3 py-1 bg-amber-500/10 border border-amber-500/20 text-amber-400 rounded-full text-xs font-bold tracking-wider uppercase mb-3">Engenharia Financeira & Governança</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight mb-3">Painel Executivo Integrado</h2>
                     <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
-                        Este painel conecta em tempo real os custos unitários de compras, os custos fixos estruturais e o volume de vendas por lote para projetar o **resultado financeiro exato** do Réveillon 2026 da Casa Mirante.
+                        Este sistema conecta em tempo real os custos reais de compras, a estrutura de custos fixos e o mix de vendas para garantir total previsibilidade e margem líquida no Réveillon 2026 da Casa Mirante.
                     </p>
                 </div>
             </div>
 
-            <!-- TUTORIAL PASSO A PASSO -->
-            <div class="bg-slate-900 border border-amber-500/30 p-6 sm:p-8 rounded-2xl shadow-xl">
-                <h3 class="text-lg font-bold text-amber-400 mb-4 flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
-                    Passo a Passo: Como utilizar o sistema
+            <!-- PASSO A PASSO INTERATIVO -->
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
+                <h3 class="text-base font-bold text-amber-400 mb-5 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block shadow-sm shadow-amber-400"></span>
+                    Fluxo Operacional: Como utilizar o sistema
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 text-xs text-slate-300">
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <span class="font-bold text-amber-400 block text-sm mb-1">1º Passo — Ficha Técnica F&B</span>
-                        Acesse a aba <b>Ficha Técnica F&B</b> e confira ou ajuste os preços pagos por cada um dos insumos (queijos, frios, chope, espumante, etc.). O custo unitário por adulto será atualizado na hora.
+                    <div class="bg-[#070b14] p-4 rounded-xl border border-slate-800 hover:border-amber-500/30 transition">
+                        <span class="font-bold text-amber-400 block text-sm mb-1.5 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-md bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">1</span> Ficha F&B
+                        </span>
+                        Verifique e ajuste os preços unitários reais de cada ingrediente e bebida na aba <b>Ficha Técnica F&B</b>. O custo por pessoa é calculado na hora.
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <span class="font-bold text-amber-400 block text-sm mb-1">2º Passo — Custos Fixos</span>
-                        Na aba <b>Custos Fixos</b>, verifique a quantidade e o valor unitário das atrações e equipe (banda, freelas, ECAD, etc.). Ajuste conforme suas contratações reais.
+                    <div class="bg-[#070b14] p-4 rounded-xl border border-slate-800 hover:border-amber-500/30 transition">
+                        <span class="font-bold text-amber-400 block text-sm mb-1.5 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-md bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">2</span> Custos Fixos
+                        </span>
+                        Acesse a aba <b>Custos Fixos</b> para conferir cachês da banda, quantidade de profissionais freelas e infraestrutura contratada.
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <span class="font-bold text-amber-400 block text-sm mb-1">3º Passo — Simulador & DRE</span>
-                        Na aba <b>Simulador & DRE</b> (que inicia zerada), preencha a quantidade esperada de vendas em cada lote de ingresso para calcular o Faturamento Bruto, DRE e o Ponto de Equilíbrio.
+                    <div class="bg-[#070b14] p-4 rounded-xl border border-slate-800 hover:border-amber-500/30 transition">
+                        <span class="font-bold text-amber-400 block text-sm mb-1.5 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-md bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">3</span> Simulador DRE
+                        </span>
+                        Na aba <b>Simulador & DRE</b>, preencha as quantidades vendidas em cada lote para projetar o faturamento líquido, margens e o lucro final.
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800">
-                        <span class="font-bold text-amber-400 block text-sm mb-1">4º Passo — Controle de Vendas</span>
-                        Na aba <b>Controle de Vendas</b>, registre cada cliente que efetuar a compra do ingresso (nome, telefone, mesa e lote escolhido) para manter um controle diário de caixa.
+                    <div class="bg-[#070b14] p-4 rounded-xl border border-slate-800 hover:border-amber-500/30 transition">
+                        <span class="font-bold text-amber-400 block text-sm mb-1.5 flex items-center gap-2">
+                            <span class="w-5 h-5 rounded-md bg-amber-500/20 text-amber-400 flex items-center justify-center text-xs">4</span> Vendas & Caixa
+                        </span>
+                        Utilize a aba <b>Controle de Vendas</b> para cadastrar clientes, telefones e mesas, garantindo acompanhamento do faturamento.
                     </div>
                 </div>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg">
-                    <div class="w-10 h-10 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-lg mb-4">1</div>
-                    <h3 class="text-base font-bold text-white mb-2">Ficha Técnica F&B Detalhada</h3>
-                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3">
-                        Todos os **40+ insumos reais** (queijos, frios, proteínas, chopes, espumante Garibaldi, sucos e descartáveis) possuem seus preços unitários e gramaturas ajustáveis individualmente na aba F&B.
-                    </p>
-                    <div class="text-xs font-semibold text-amber-400">Qualquer alteração recalcula o custo/pessoa na hora.</div>
+            <!-- PILARES DA METODOLOGIA -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-9 h-9 rounded-xl bg-amber-500/10 border border-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-sm mb-4">F&B</div>
+                        <h4 class="text-base font-bold text-white mb-2">Consumo Contínuo (5 Horas)</h4>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Modelagem de consumo para 5 horas de festa (22h às 03h). Abrange tábua de frios, salgados, massas, ceia com proteínas nobres, sobremesas e open bar com **2,8L de chopes artesanais**, espumante Garibaldi e drinks.
+                        </p>
+                    </div>
+                    <div class="text-xs font-semibold text-amber-400 border-t border-slate-800/80 pt-3">Atualização automática de custos.</div>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg">
-                    <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg mb-4">2</div>
-                    <h3 class="text-base font-bold text-white mb-2">Rateio dos Custos Fixos</h3>
-                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3">
-                        A estrutura do evento soma <b class="text-amber-400" id="guia-fixo-total-card">R$ 8.880,00</b>. Dividimos esse valor pela quantidade de <b class="text-white" id="guia-adultos-base-card">0 adultos pagantes</b> simulados, resultando no rateio exato por ingresso.
-                    </p>
-                    <div class="text-xs font-semibold text-emerald-400" id="guia-formula-rateio-card">Custo Fixo Rateado = R$ 8.880,00 ÷ Total Adultos</div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-sm mb-4">FX</div>
+                        <h4 class="text-base font-bold text-white mb-2">Rateio Estrutural</h4>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            A estrutura soma <b class="text-amber-400" id="guia-fixo-total-card">R$ 8.880,00</b>. O rateio divide este valor pelo total de adultos simulados. Ex: com 80 adultos, o peso fixo é de <b class="text-emerald-400">R$ 111,00/PESSOA</b>; com 60 adultos, <b class="text-emerald-400">R$ 148,00/PESSOA</b>.
+                        </p>
+                    </div>
+                    <div class="text-xs font-semibold text-emerald-400 border-t border-slate-800/80 pt-3" id="guia-formula-rateio-card">Rateio = R$ 8.880,00 ÷ Total Adultos</div>
                 </div>
 
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-lg">
-                    <div class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg mb-4">3</div>
-                    <h3 class="text-base font-bold text-white mb-2">Impostos & Cartão (Lucro Presumido/Real)</h3>
-                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-3">
-                        Sobre o valor total de cada ingresso vendido, aplicamos a dedução direta de **8,65%** (sendo 5,65% de tributos sobre notas de vendas/serviços e 3,00% da taxa média bancária de Cartão/Pix).
-                    </p>
-                    <div class="text-xs font-semibold text-blue-400">Receita Líquida = Venda Bruta - 8,65%</div>
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
+                    <div>
+                        <div class="w-9 h-9 rounded-xl bg-blue-500/10 border border-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-sm mb-4">IMP</div>
+                        <h4 class="text-base font-bold text-white mb-2">Tributos & Adquirentes</h4>
+                        <p class="text-slate-400 text-xs sm:text-sm leading-relaxed mb-4">
+                            Incidência fixa de **8,65%** sobre o valor bruto de cada bilhete comercializado, sendo **5,65%** para tributos fiscais (Lucro Presumido/Real) e **3,00%** de taxa média de processamento de cartão e Pix.
+                        </p>
+                    </div>
+                    <div class="text-xs font-semibold text-blue-400 border-t border-slate-800/80 pt-3">Receita Líquida = Bruto - 8,65%</div>
                 </div>
             </div>
 
-            <!-- BREAKEVEN DINÂMICO -->
-            <div class="bg-slate-900 border border-slate-800 p-6 sm:p-8 rounded-2xl shadow-lg">
-                <h3 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <span class="w-3 h-3 rounded-full bg-amber-400 inline-block"></span>
-                    Entendendo o Ponto de Equilíbrio (Breakeven)
+            <!-- BREAKEVEN EXPLICADO -->
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
+                <h3 class="text-base font-bold text-white mb-4 flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-400 inline-block"></span>
+                    Análise do Ponto de Equilíbrio (Breakeven)
                 </h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-sm text-slate-300">
                     <div class="space-y-3">
-                        <p class="leading-relaxed">
-                            O **Ponto de Equilíbrio** indica quantos ingressos de adulto precisam ser vendidos para pagar 100% dos custos fixos da casa (<span id="guia-fixo-breakeven-text" class="font-bold text-amber-400">R$ 8.880,00</span>) e os insumos consumidos.
+                        <p class="leading-relaxed text-xs sm:text-sm text-slate-300">
+                            O **Breakeven** determina o volume exato de bilhetes adultos necessários para cobrir 100% dos custos fixos (<span id="guia-fixo-breakeven-text" class="font-bold text-amber-400">R$ 8.880,00</span>) e os insumos consumidos.
                         </p>
-                        <p class="leading-relaxed font-semibold text-amber-400">
-                            Fórmula: Breakeven = Custo Fixo Total ÷ Margem de Contribuição Média por Ingresso
+                        <p class="leading-relaxed font-semibold text-amber-400 text-xs sm:text-sm">
+                            Fórmula: Breakeven = Custo Fixo Total ÷ Margem de Contribuição Unitária
+                        </p>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Com ticket médio de R$ 450, deduzidos impostos/cartão e o custo de F&B, cada convite gera uma sobra de aprox. <b>R$ 290,64</b> para amortizar a estrutura.
                         </p>
                     </div>
-                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800/80 space-y-2">
-                        <div class="text-xs font-bold text-slate-400 uppercase">RESULTADO EM TEMPO REAL:</div>
-                        <div class="text-2xl font-extrabold text-white"><span id="guia-breakeven-num" class="text-emerald-400">31</span> Adultos Pagantes</div>
-                        <p class="text-xs text-slate-400">
-                            A partir do <b class="text-amber-400" id="guia-ingresso-lucro-num">32º</b> ingresso vendido, 100% da margem limpa entra diretamente como lucro líquido no bolso da Casa Mirante!
+                    <div class="bg-[#070b14] p-5 rounded-xl border border-slate-800 flex flex-col justify-center space-y-2">
+                        <div class="text-xs font-bold text-slate-400 uppercase tracking-wider">PONTO DE EQUILÍBRIO OPERACIONAL:</div>
+                        <div class="text-3xl font-extrabold text-white"><span id="guia-breakeven-num" class="text-emerald-400">31</span> Adultos Pagantes</div>
+                        <p class="text-xs text-slate-400 leading-relaxed">
+                            Do 1º ao <span id="guia-breakeven-ate-num">31º</span> ingresso, a operação empata as contas. A partir do <b class="text-amber-400" id="guia-ingresso-lucro-num">32º</b> ingresso, 100% da margem líquida entra como lucro puro no caixa!
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- ABA 2: SIMULADOR & DRE (ZERADA) -->
+        <!-- ABA 2: SIMULADOR & DRE -->
         <section id="tab-simulador" class="tab-content hidden space-y-8">
             <!-- CARDS METRICAS -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                <div class="glass-card p-5 rounded-2xl">
                     <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Faturamento Bruto</span>
                     <div id="card-faturamento" class="text-2xl font-black text-white mt-1">R$ 0,00</div>
                     <span class="text-xs text-slate-500 mt-1 block">Projeção total de vendas</span>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                <div class="glass-card p-5 rounded-2xl">
                     <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Deduções (8,65%)</span>
                     <div id="card-impostos" class="text-2xl font-black text-rose-400 mt-1">R$ 0,00</div>
                     <span class="text-xs text-slate-500 mt-1 block">Impostos + Taxas Cartão/Pix</span>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                <div class="glass-card p-5 rounded-2xl">
                     <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Custo F&B Total</span>
                     <div id="card-custo-fb" class="text-2xl font-black text-amber-400 mt-1">R$ 0,00</div>
                     <span id="card-fb-unit-sub" class="text-xs text-slate-500 mt-1 block">R$ 0,00 / adulto</span>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-5 rounded-2xl shadow-lg">
+                <div class="glass-card p-5 rounded-2xl">
                     <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Lucro Líquido Final</span>
                     <div id="card-lucro" class="text-2xl font-black text-emerald-400 mt-1">R$ 0,00</div>
                     <span id="card-margem-pct" class="text-xs text-emerald-500 font-semibold mt-1 block">Margem 0,0%</span>
@@ -165,7 +188,7 @@
             <!-- TABELA LOTES + DRE -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <!-- Simulador Lotes -->
-                <div class="lg:col-span-2 bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="glass-card p-6 rounded-2xl lg:col-span-2">
                     <div class="flex justify-between items-center mb-6">
                         <div>
                             <h2 class="text-lg font-bold text-white">Simulador de Vendas por Lote</h2>
@@ -177,7 +200,7 @@
                     <div class="overflow-x-auto custom-scrollbar">
                         <table class="w-full text-left text-sm">
                             <thead>
-                                <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                                <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold text-slate-400">
                                     <th class="pb-3">Categoria / Lote</th>
                                     <th class="pb-3 text-center">Preço (R$)</th>
                                     <th class="pb-3 text-center">Qtd Projetada</th>
@@ -193,38 +216,38 @@
                 </div>
 
                 <!-- DRE Executivo -->
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl flex flex-col justify-between">
+                <div class="glass-card p-6 rounded-2xl flex flex-col justify-between">
                     <div>
                         <h2 class="text-lg font-bold text-white mb-4">DRE Resumido do Evento</h2>
                         <div class="space-y-3 text-sm">
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <div class="flex justify-between border-b border-slate-800/80 pb-2">
                                 <span class="text-slate-400">Receita Bruta Total:</span>
                                 <span id="dre-rec-bruta" class="font-bold text-white">R$ 0,00</span>
                             </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <div class="flex justify-between border-b border-slate-800/80 pb-2">
                                 <span class="text-slate-400">(-) Impostos & Cartão (8,65%):</span>
                                 <span id="dre-impostos" class="font-semibold text-rose-400">R$ 0,00</span>
                             </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <div class="flex justify-between border-b border-slate-800/80 pb-2">
                                 <span class="text-slate-300 font-medium">(=) Receita Líquida Operacional:</span>
                                 <span id="dre-rec-liq" class="font-bold text-emerald-400">R$ 0,00</span>
                             </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <div class="flex justify-between border-b border-slate-800/80 pb-2">
                                 <span class="text-slate-400">(-) Custo Total Insumos F&B:</span>
                                 <span id="dre-custo-fb" class="font-semibold text-rose-400">R$ 0,00</span>
                             </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <div class="flex justify-between border-b border-slate-800/80 pb-2">
                                 <span class="text-slate-300 font-medium">(=) Margem de Contribuição Direta:</span>
                                 <span id="dre-margem-contrib" class="font-bold text-emerald-400">R$ 0,00</span>
                             </div>
-                            <div class="flex justify-between border-b border-slate-800 pb-2">
+                            <div class="flex justify-between border-b border-slate-800/80 pb-2">
                                 <span class="text-slate-400">(-) Custos Fixos Totais:</span>
                                 <span id="dre-custos-fixos" class="font-semibold text-rose-400">R$ 0,00</span>
                             </div>
                         </div>
                     </div>
 
-                    <div class="mt-6 pt-4 border-t border-slate-800 bg-slate-950 p-4 rounded-xl space-y-2 border border-slate-800/80">
+                    <div class="mt-6 pt-4 border-t border-slate-800 bg-[#070b14] p-4 rounded-xl space-y-2 border border-slate-800">
                         <div class="flex justify-between items-center">
                             <span class="text-xs font-bold text-slate-400 uppercase">LUCRO LÍQUIDO FINAL</span>
                             <span id="dre-lucro-final" class="text-xl font-extrabold text-emerald-400">R$ 0,00</span>
@@ -239,15 +262,15 @@
 
             <!-- GRÁFICOS VISUAIS DA OPERAÇÃO -->
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="glass-card p-6 rounded-2xl">
                     <h3 class="text-base font-bold text-white mb-4">Composição Financeira (Receita vs Custos)</h3>
-                    <div class="h-64">
+                    <div class="h-64 relative w-full">
                         <canvas id="chartReceitaCustos"></canvas>
                     </div>
                 </div>
-                <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+                <div class="glass-card p-6 rounded-2xl">
                     <h3 class="text-base font-bold text-white mb-4">Sobras/Lucro Líquido por Lote Adulto (Unitário)</h3>
-                    <div class="h-64">
+                    <div class="h-64 relative w-full">
                         <canvas id="chartLucroLotes"></canvas>
                     </div>
                 </div>
@@ -256,11 +279,11 @@
 
         <!-- ABA 3: FICHA TÉCNICA F&B -->
         <section id="tab-fb" class="tab-content hidden space-y-8">
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                     <div>
                         <h2 class="text-lg font-bold text-white">Ficha Técnica Destrinchada F&B (Preços Reais)</h2>
-                        <p class="text-xs text-slate-400">Altere o preço pago por Kg/Litro/Unidade para recalcular instantaneamente o custo por pessoa</p>
+                        <p class="text-xs text-slate-400">Altere o preço pago por Kg/Litro/Unidade para recalcular instantaneamente o custo por pessoa (Salvo no navegador)</p>
                     </div>
                     <div class="bg-amber-500/10 border border-amber-500/30 px-4 py-2 rounded-xl text-right">
                         <span class="text-xs font-semibold text-amber-400 block uppercase">Custo F&B / Adulto</span>
@@ -271,7 +294,7 @@
                 <div class="overflow-x-auto custom-scrollbar">
                     <table class="w-full text-left text-sm">
                         <thead>
-                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold text-slate-400">
                                 <th class="pb-3">Categoria</th>
                                 <th class="pb-3">Insumo / Ingrediente</th>
                                 <th class="pb-3 text-center">Consumo / Pessoa</th>
@@ -290,11 +313,11 @@
 
         <!-- ABA 4: CUSTOS FIXOS -->
         <section id="tab-fixos" class="tab-content hidden space-y-8">
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
                 <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
                     <div>
                         <h2 class="text-lg font-bold text-white">Estrutura de Custos Fixos (Casa Mirante)</h2>
-                        <p class="text-xs text-slate-400">Altere tanto a quantidade/equipe quanto o valor unitário para ver o reflexo instantâneo no evento</p>
+                        <p class="text-xs text-slate-400">Altere tanto a quantidade/equipe quanto o valor unitário (Salvo no navegador)</p>
                     </div>
                     <div class="bg-amber-500/10 border border-amber-500/30 px-4 py-2 rounded-xl text-right">
                         <span class="text-xs font-semibold text-amber-400 block uppercase">Custo Fixo Total</span>
@@ -305,7 +328,7 @@
                 <div class="overflow-x-auto custom-scrollbar">
                     <table class="w-full text-left text-sm">
                         <thead>
-                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold text-slate-400">
                                 <th class="pb-3">Item / Fornecedor</th>
                                 <th class="pb-3">Descrição / Detalhes</th>
                                 <th class="pb-3 text-center">Qtd / Profissionais</th>
@@ -321,27 +344,27 @@
             </div>
         </section>
 
-        <!-- ABA 5: CONTROLE DE VENDAS (ZERADA) -->
+        <!-- ABA 5: CONTROLE DE VENDAS -->
         <section id="tab-vendas" class="tab-content hidden space-y-8">
-            <div class="bg-slate-900 border border-slate-800 p-6 rounded-2xl shadow-xl">
+            <div class="glass-card p-6 sm:p-8 rounded-2xl">
                 <h2 class="text-lg font-bold text-white mb-4">Registrar Nova Venda de Ingresso</h2>
                 
-                <form id="form-venda" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-8 bg-slate-950 p-5 rounded-xl border border-slate-800">
+                <form id="form-venda" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4 mb-8 bg-[#070b14] p-5 rounded-xl border border-slate-800">
                     <div class="lg:col-span-2">
                         <label class="block text-xs font-semibold text-slate-400 mb-1">Nome do Cliente</label>
-                        <input type="text" id="v-nome" required placeholder="Ex: Nome do Cliente" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                        <input type="text" id="v-nome" required placeholder="Ex: Nome do Cliente" class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 mb-1">WhatsApp</label>
-                        <input type="text" id="v-tel" placeholder="(32) 99999-9999" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                        <input type="text" id="v-tel" placeholder="(32) 99999-9999" class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 mb-1">Mesa</label>
-                        <input type="text" id="v-mesa" placeholder="Mesa 01" required class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                        <input type="text" id="v-mesa" placeholder="Mesa 01" required class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-400 mb-1">Categoria / Lote</label>
-                        <select id="v-lote-select" class="w-full bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
+                        <select id="v-lote-select" class="w-full bg-[#090d16] border border-slate-800 rounded-lg px-3 py-2 text-sm text-white focus:outline-none focus:border-amber-500">
                             <option value="Adulto - Lote Relâmpago|420">Adulto - Relâmpago (R$ 420)</option>
                             <option value="Adulto - 2º Lote|450">Adulto - 2º Lote (R$ 450)</option>
                             <option value="Adulto - 3º Lote|480">Adulto - 3º Lote (R$ 480)</option>
@@ -358,16 +381,16 @@
                 </form>
 
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-base font-bold text-white">Vendas Confirmadas</h3>
+                    <h3 class="text-base font-bold text-white">Vendas Confirmadas (Salvo no Navegador)</h3>
                     <div id="vendas-total-arrecadado" class="text-sm font-bold text-emerald-400">Total Arrecadado: R$ 0,00</div>
                 </div>
 
                 <div class="overflow-x-auto custom-scrollbar">
                     <table class="w-full text-left text-sm">
                         <thead>
-                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold">
+                            <tr class="border-b border-slate-800 text-xs text-slate-400 uppercase font-semibold text-slate-400">
                                 <th class="pb-3">Cliente</th>
-                                <th class="pb-3">Telefone</th>
+                                <th class="pb-3">WhatsApp</th>
                                 <th class="pb-3 text-center">Mesa</th>
                                 <th class="pb-3 text-center">Categoria / Lote</th>
                                 <th class="pb-3 text-right">Valor Ingresso (R$)</th>
@@ -384,9 +407,10 @@
 
     </main>
 
-    <!-- JS -->
+    <!-- JS COM PERSISTÊNCIA (localStorage) E CORREÇÃO DE GRÁFICOS -->
     <script>
-        let dadosInsumos = [
+        // Dados Padrão F&B
+        const defaultInsumos = [
             { cat: "Mesa de Frios", nome: "Parmesão", qtd: 0.020, und: "Kg", preco: 41.90 },
             { cat: "Mesa de Frios", nome: "Mussarela", qtd: 0.020, und: "Kg", preco: 34.90 },
             { cat: "Mesa de Frios", nome: "Provolone", qtd: 0.020, und: "Kg", preco: 54.00 },
@@ -445,7 +469,7 @@
             { cat: "Bebidas Open Bar", nome: "Água Mineral / c/ Gás (500ml)", qtd: 1.5, und: "Garrafa", preco: 2.15 }
         ];
 
-        let dadosFixos = [
+        const defaultFixos = [
             { item: "Atração Musical", desc: "Banda BASF + DJ completo com som/luz", qtd: 1, preco: 4300.00 },
             { item: "Infraestrutura", desc: "Locação de Tenda Coberta externa", qtd: 1, preco: 0.00 },
             { item: "Equipe Freela Evento", desc: "Profissionais (Salão, Cozinha e Garden)", qtd: 16, preco: 130.00 },
@@ -454,8 +478,7 @@
             { item: "Decoração & Cenografia", desc: "Ambientação Casa Mirante", qtd: 1, preco: 1000.00 }
         ];
 
-        // === SIMULADOR ZERADO PARA PREENCHIMENTO PELO USUÁRIO ===
-        let dadosLotes = [
+        const defaultLotes = [
             { categoria: "Adulto", lote: "Lote Relâmpago", preco: 420.00, qtd: 0 },
             { categoria: "Adulto", lote: "2º Lote", preco: 450.00, qtd: 0 },
             { categoria: "Adulto", lote: "3º Lote", preco: 480.00, qtd: 0 },
@@ -466,8 +489,18 @@
             { categoria: "Crianças (até 3 anos)", lote: "Gratuito", preco: 0.00, qtd: 0 }
         ];
 
-        // === CONTROLE DE VENDAS ZERADO ===
-        let listaVendas = [];
+        // Carregar do localStorage ou usar padrões
+        let dadosInsumos = JSON.parse(localStorage.getItem('cm_insumos')) || defaultInsumos;
+        let dadosFixos = JSON.parse(localStorage.getItem('cm_fixos')) || defaultFixos;
+        let dadosLotes = JSON.parse(localStorage.getItem('cm_lotes')) || defaultLotes;
+        let listaVendas = JSON.parse(localStorage.getItem('cm_vendas')) || [];
+
+        function salvarDados() {
+            localStorage.setItem('cm_insumos', JSON.stringify(dadosInsumos));
+            localStorage.setItem('cm_fixos', JSON.stringify(dadosFixos));
+            localStorage.setItem('cm_lotes', JSON.stringify(dadosLotes));
+            localStorage.setItem('cm_vendas', JSON.stringify(listaVendas));
+        }
 
         let chartRecCustosObj = null;
         let chartLucroLotesObj = null;
@@ -475,14 +508,22 @@
         function switchTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
             document.querySelectorAll('.tab-btn').forEach(el => {
-                el.classList.remove('bg-amber-500', 'text-slate-950', 'shadow-md');
+                el.classList.remove('bg-amber-500', 'text-slate-950', 'shadow-md', 'font-bold');
                 el.classList.add('text-slate-400');
             });
             document.getElementById(`tab-${tabId}`).classList.remove('hidden');
             const activeBtn = document.getElementById(`btn-${tabId}`);
             activeBtn.classList.remove('text-slate-400');
-            activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'shadow-md');
+            activeBtn.classList.add('bg-amber-500', 'text-slate-950', 'shadow-md', 'font-bold');
+            
             renderAll();
+
+            if (tabId === 'simulador') {
+                setTimeout(() => {
+                    if (chartRecCustosObj) chartRecCustosObj.resize();
+                    if (chartLucroLotesObj) chartLucroLotesObj.resize();
+                }, 100);
+            }
         }
 
         function calcularCustoFBUnitario() {
@@ -512,7 +553,7 @@
                         <td class="py-2.5 px-3 text-center text-slate-300">${item.qtd}</td>
                         <td class="py-2.5 px-3 text-center text-slate-400">${item.und}</td>
                         <td class="py-2.5 px-3 text-right">
-                            <input type="number" step="0.01" value="${item.preco.toFixed(2)}" onchange="atualizarPrecoFB(${index}, this.value)" class="w-24 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-right text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+                            <input type="number" step="0.01" value="${item.preco.toFixed(2)}" onchange="atualizarPrecoFB(${index}, this.value)" class="w-24 bg-[#090d16] border border-slate-800 rounded-lg px-2.5 py-1 text-right text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
                         </td>
                         <td class="py-2.5 px-3 text-right font-bold text-emerald-400">R$ ${subtotal.toFixed(2)}</td>
                     </tr>
@@ -525,6 +566,7 @@
 
         function atualizarPrecoFB(index, val) {
             dadosInsumos[index].preco = parseFloat(val) || 0;
+            salvarDados();
             renderAll();
         }
 
@@ -541,10 +583,10 @@
                         <td class="py-3 px-3 font-bold text-white">${item.item}</td>
                         <td class="py-3 px-3 text-slate-400 text-xs">${item.desc}</td>
                         <td class="py-3 px-3 text-center">
-                            <input type="number" value="${item.qtd}" min="0" onchange="atualizarQtdFixo(${index}, this.value)" class="w-16 bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-center font-bold text-white focus:outline-none focus:border-amber-500">
+                            <input type="number" value="${item.qtd}" min="0" onchange="atualizarQtdFixo(${index}, this.value)" class="w-16 bg-[#090d16] border border-slate-800 rounded-lg px-2 py-1 text-center font-bold text-white focus:outline-none focus:border-amber-500">
                         </td>
                         <td class="py-3 px-3 text-right">
-                            <input type="number" step="0.01" value="${item.preco.toFixed(2)}" onchange="atualizarPrecoFixo(${index}, this.value)" class="w-28 bg-slate-950 border border-slate-800 rounded-lg px-2.5 py-1 text-right text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
+                            <input type="number" step="0.01" value="${item.preco.toFixed(2)}" onchange="atualizarPrecoFixo(${index}, this.value)" class="w-28 bg-[#090d16] border border-slate-800 rounded-lg px-2.5 py-1 text-right text-amber-400 font-bold text-sm focus:outline-none focus:border-amber-500">
                         </td>
                         <td class="py-3 px-3 text-right font-bold text-emerald-400">R$ ${subtotal.toFixed(2)}</td>
                     </tr>
@@ -556,11 +598,13 @@
 
         function atualizarPrecoFixo(index, val) {
             dadosFixos[index].preco = parseFloat(val) || 0;
+            salvarDados();
             renderAll();
         }
 
         function atualizarQtdFixo(index, val) {
             dadosFixos[index].qtd = parseInt(val) || 0;
+            salvarDados();
             renderAll();
         }
 
@@ -588,7 +632,7 @@
                         </td>
                         <td class="py-3 text-center font-bold text-amber-400">R$ ${item.preco.toFixed(2)}</td>
                         <td class="py-3 text-center">
-                            <input type="number" value="${item.qtd}" min="0" onchange="atualizarQtdLote(${index}, this.value)" class="w-16 bg-slate-950 border border-slate-800 rounded-lg px-2 py-1 text-center font-bold text-white focus:outline-none focus:border-amber-500">
+                            <input type="number" value="${item.qtd}" min="0" onchange="atualizarQtdLote(${index}, this.value)" class="w-16 bg-[#090d16] border border-slate-800 rounded-lg px-2 py-1 text-center font-bold text-white focus:outline-none focus:border-amber-500">
                         </td>
                         <td class="py-3 text-right font-semibold text-slate-300">R$ ${subBruta.toFixed(2)}</td>
                         <td class="py-3 text-right font-bold text-emerald-400">R$ ${subLiq.toFixed(2)}</td>
@@ -637,11 +681,10 @@
             // ABA GUIA & CÁLCULOS
             let rateioFixoPorAdulto = totalAdultos > 0 ? (custosFixosTotais / totalAdultos) : 0;
             document.getElementById('guia-fixo-total-card').innerText = `R$ ${custosFixosTotais.toFixed(2)}`;
-            document.getElementById('guia-adultos-base-card').innerText = `${totalAdultos} adultos pagantes`;
-            document.getElementById('guia-fixo-rateio-card').innerText = `R$ ${rateioFixoPorAdulto.toFixed(2)}`;
-            document.getElementById('guia-formula-rateio-card').innerText = `Custo Fixo Rateado = R$ ${custosFixosTotais.toFixed(2)} ÷ ${totalAdultos || 'Total'} adultos`;
+            document.getElementById('guia-fixo-rateio-card').innerText = `Rateio = R$ ${custosFixosTotais.toFixed(2)} ÷ Total Adultos`;
             document.getElementById('guia-fixo-breakeven-text').innerText = `R$ ${custosFixosTotais.toFixed(2)}`;
             document.getElementById('guia-breakeven-num').innerText = `${breakevenAdultos}`;
+            document.getElementById('guia-breakeven-ate-num').innerText = `${breakevenAdultos}º`;
             document.getElementById('guia-ingresso-lucro-num').innerText = `${breakevenAdultos + 1}º`;
 
             renderCharts(recLiq, custoFBTotal, custosFixosTotais, lucroLiquidoFinal, custoFBUnit, rateioFixoPorAdulto);
@@ -649,12 +692,15 @@
 
         function atualizarQtdLote(index, val) {
             dadosLotes[index].qtd = parseInt(val) || 0;
+            salvarDados();
             renderAll();
         }
 
         function renderCharts(recLiq, custoFB, custosFixos, lucro, custoFBUnit, rateioFixoUnit) {
-            const ctx1 = document.getElementById('chartReceitaCustos').getContext('2d');
-            const ctx2 = document.getElementById('chartLucroLotes').getContext('2d');
+            const ctx1 = document.getElementById('chartReceitaCustos');
+            const ctx2 = document.getElementById('chartLucroLotes');
+
+            if (!ctx1 || !ctx2) return;
 
             if (chartRecCustosObj) chartRecCustosObj.destroy();
             if (chartLucroLotesObj) chartLucroLotesObj.destroy();
@@ -759,6 +805,8 @@
                 nome, tel, mesa, loteText, valor
             });
 
+            salvarDados();
+
             document.getElementById('v-nome').value = '';
             document.getElementById('v-tel').value = '';
             document.getElementById('v-mesa').value = '';
@@ -768,6 +816,7 @@
 
         function removerVenda(id) {
             listaVendas = listaVendas.filter(v => v.id !== id);
+            salvarDados();
             renderVendas();
         }
 
